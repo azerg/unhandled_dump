@@ -1,0 +1,58 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 20,
+      "patch": 0
+    },
+    "configurePresets": [
+    {
+      "name": "config-base",
+      "hidden": true,
+      "displayName": "base Configuration",
+      "generator": "Visual Studio 17 2022",
+	  "binaryDir": "${sourceDir}/build",
+	  "cacheVariables": {
+		"VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/vcpkg/triplets",
+		"CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+	  }
+    },
+    {
+        "name": "debug",
+        "displayName": "Config Debug",
+        "inherits": "config-base",
+        "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Debug",
+            "VCPKG_TARGET_TRIPLET": "x64-windows-static"
+        }
+      },
+      {
+        "name": "release",
+        "displayName": "Config ReleaseWithDebugInfo",
+        "description": "release build type with an additional debug info",
+        "inherits": "debug",
+        "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+            "VCPKG_TARGET_TRIPLET": "x64-win"
+        }
+      }
+  ],
+  "buildPresets": [
+    {
+        "name": "build-base",
+        "hidden": true,
+        "configurePreset": "debug"
+    },
+    {
+      "name": "debug",
+      "displayName": "Build Debug",
+      "inherits": "build-base"
+    },
+    {
+      "name": "release",
+      "displayName": "Build Release",
+      "inherits": "build-base",
+      "configurePreset": "release"
+    }
+  ]
+}
