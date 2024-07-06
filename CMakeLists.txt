@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(unhandled_dump_lib VERSION 3.0)
+project(unhandled_dump)
 
 # Set the C++ standard
 set(CMAKE_CXX_STANDARD 20)
