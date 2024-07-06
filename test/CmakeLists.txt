@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.20)
+project(test)
+
+enable_testing()
+find_package(GTest REQUIRED)
+include(GoogleTest)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+add_executable(unit_tests main.cpp basic_test.cpp)
+
+#set_property(TARGET unit_tests PROPERTY
+#  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+  
+enable_testing()
+  
+target_link_libraries(unit_tests GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main unhandled_dump)
+
+add_test(AllTestsInMain main)

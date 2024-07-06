@@ -1,0 +1,10 @@
+build/
+bin/
+
+#Cmake
+CMakeFiles/
+
+#vcpkg
+/CMakeCache.txt
+/vcpkg-manifest-install.log
+vcpkg_installed/
